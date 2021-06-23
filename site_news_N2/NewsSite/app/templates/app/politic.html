@@ -1,0 +1,143 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+        <section class="section first-section">
+            <div class="container-fluid">
+
+                <div class="masonry-blog clearfix">
+                    <div class="first-slot">
+                        <div class="masonry-box post-media">
+                             <img src="{{ topics.first.picture.url }}" style="width: auto; height: 470px;" >
+                             <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                        <span class="bg-orange"><a href="{% static 'tech-category-01.html' %}" title="">{{ topics.first.get_news_type_display }}</a></span>
+                                        <h4><a href="{% url 'App:Single_Test' topics.first.id %}" title="">{{ topics.first.text|truncatewords:12 }}</a></h4>
+                                        <small><a href="{% static 'tech-single.html' %}" title="">24 July, 2017</a></small>
+                                        <small><a href="{% static 'tech-author.html' %}" title="">{{ topics.first.author}}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end shadow-desc -->
+                            </div><!-- end shadow -->
+                        </div><!-- end post-media -->
+                    </div><!-- end first-side -->
+
+                    <div class="second-slot">
+                        <div class="masonry-box post-media">
+                             <img src="{{ topics.1.picture.url }}" alt="" style="width: auto; height: 470px;">
+                             <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                        <span class="bg-orange"><a href="{% static 'tech-category-01.html' %}" title="">{{ topics.1.get_news_type_display }}</a></span>
+                                        <h4><a href="{% url 'App:Single_Test' topics.1.id %}" title="">{{ topics.1.text|truncatewords:10 }}</a></h4>
+                                        <small><a href="{% static 'tech-single.html' %}" title="">03 July, 2017</a></small>
+                                        <small><a href="{% static 'tech-author.html' %}" title="">{{ topics.1.author}}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end shadow-desc -->
+                             </div><!-- end shadow -->
+                        </div><!-- end post-media -->
+                    </div><!-- end second-side -->
+
+                    <div class="last-slot">
+                        <div class="masonry-box post-media">
+                             <img src="{{ topics.2.picture.url }}" alt="" style="width: auto; height: 470px;">
+                             <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                        <span class="bg-orange"><a href="{% static 'tech-category-01.html' %}" title="">{{ topics.2.get_news_type_display }}</a></span>
+                                        <h4><a href="{% url 'App:Single_Test' topics.2.id %}" title="">{{ topics.2.text|truncatewords:10 }}</a></h4>
+                                        <small><a href="{% static 'tech-single.html' %}" title="">01 July, 2017</a></small>
+                                        <small><a href="{% static 'tech-author.html' %}" title="">{{ topics.2.author}}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end shadow-desc -->
+                             </div><!-- end shadow -->
+                        </div><!-- end post-media -->
+                    </div><!-- end second-side -->
+                </div><!-- end masonry -->
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-top clearfix">
+                                <h4 class="pull-left">Recent News </h4>
+                            </div><!-- end blog-top -->
+
+
+                            {% for one_topic in page.object_list %}
+                            <div class="blog-list clearfix">
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a href="{% url 'App:Single_Test' one_topic.id %}" title="">
+                                                <img src="{{ one_topic.picture.url }}" alt="" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div><!-- end media -->
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a href="{% url 'App:Single_Test' one_topic.id %}" title="">{{ one_topic.title }}</a></h4>
+                                        <p>{{ one_topic.text|truncatewords:25 }}</p>
+                                        <small class="firstsmall"><a class="bg-orange" href="{% static 'tech-category-01.html' %}" title="">{{ one_topic.get_news_type_display }}</a></small>
+                                        <small><a href="{% static 'tech-single.html' %}" title="">21 July, 2017</a></small>
+                                        <small><a href="{% static 'tech-author.html' %}" title="">ავტორი: {{ one_topic.author }}</a></small>
+                                        <small><a href="{% static 'tech-single.html' %}" title=""><i class="fa fa-eye"></i> 1114</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+
+                                <hr class="invis">
+
+                            </div><!-- end blog-list -->
+                            {% endfor %}
+
+
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        <li class="page-item">
+                                            {% if page.has_previous %}
+                                            <a class="page-link" href="{% url 'App:Politic' %}?page={{ page.previous_page_number }}">Previous</a>
+                                            {% endif %}
+                                        </li>
+                                        <li class="page-item">
+                                            {% if page.has_next %}
+                                            <a class="page-link" href="{% url 'App:Politic' %}?page={{ page.next_page_number }}">Next</a>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                    </div><!-- end col -->
+
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <a href="{{ ad.link }}" target="_blank">
+                                        <img src="{{ ad.image.url }}" alt="" class="img-fluid">
+                                        </a>
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
